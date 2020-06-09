@@ -25,9 +25,11 @@ iwyu)
   BUILD_TYPE="IWYU" bash -x build-support/jenkins/build-and-test.sh 2>&1 | tee -a ${base_dir}/results/iwyu/console.log
   ;;
 debug)
+  export EXTRA_BUILD_FLAGS="-DKUDU_LINK=dynamic"
   BUILD_TYPE="DEBUG" KUDU_ALLOW_SLOW_TESTS=0 bash -x build-support/jenkins/build-and-test.sh 2>&1 |tee ${base_dir}/results/debug/console.log
   ;;
 release)
+  export EXTRA_BUILD_FLAGS="-DKUDU_LINK=dynamic"
   BUILD_TYPE="RELEASE" KUDU_ALLOW_SLOW_TESTS=0 bash -x build-support/jenkins/build-and-test.sh 2>&1 |tee ${base_dir}/results/release/console.log
   ;;
 asan)
